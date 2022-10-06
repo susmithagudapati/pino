@@ -742,6 +742,13 @@ test('throws if prettyPrint is passed in as an option', async (t) => {
   }, new Error('prettyPrint option is no longer supported, see the pino-pretty package (https://github.com/pinojs/pino-pretty)'))
 })
 
+test('checks prettier api without pretty-print enabled', async ({ equal }) => {
+  const instance = pino({
+    prettifier: require('pino-pretty')
+  })
+  instance.info(instance)
+})
+
 test('Should invoke `onChild` with the newly created child', async ({ equal }) => {
   let innerChild
   const child = pino({
